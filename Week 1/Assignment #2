@@ -1,0 +1,98 @@
+function myEach(arr, cb)
+{
+  for(let step = 0; step < arr.length; step++)
+  {
+    arr[step] = cb(arr[step]);
+  }
+}
+function Array.prototype.myEach(cb)
+{
+  for(let step = 0; step < this.length; step++)
+  {
+    this[step] = cb(this[step]);
+  }
+}
+function myMap(arr, cb)
+{
+  let mapArr = [];
+  for(let step = 0; step < arr.length;step++)
+  {
+    mapArr[step] = cb(arr[step]);
+  }
+  return mapArr;
+}
+function Array.prototype.myMap(cb)
+{
+  let mapArr = [];
+  for(let step = 0; step < this.length;step++)
+  {
+    mapArr[step] = cb(this[step]);
+  }
+  return mapArr;
+}
+
+function myFilter(arr, cb)
+{
+  let filterArr = [];
+  for(let step = 0; step < arr.length; step++)
+  {
+    if(cb(arr[step])) filterArr.push(arr[step]);
+  }
+  return filterArr;
+}
+
+function Array.prototype.myFilter(cb)
+{
+  let filterArr = [];
+  for(let step = 0; step < this.length; step++)
+  {
+    if(cb(this[step])) filterArr.push(this[step]);
+  }
+  return filterArr;
+}
+
+function mySome(arr, cb)
+{
+ let check = false;
+ for(let step = 0; step < arr.length; step++)
+ {
+   if(cb(arr[step])) check = true;
+ }
+ return check;
+}
+
+function Array.prototype.mySome(cb)
+{
+ let check = false;
+ for(let step = 0; step < this.length; step++)
+ {
+   if(cb(this[step])) check = true;
+ }
+ return check;
+}
+
+function myEvery(arr, cb)
+{
+ let check = true;
+ for(let step = 0; step < arr.length; step++)
+ {
+   if(cb(arr[step]) === false) check = false;
+ }
+ return check; 
+}
+
+function Array.prototype.myEvery(cb)
+{
+ let check = true;
+ for(let step = 0; step < this.length; step++)
+ {
+   if(cb(this[step]) === false) check = false;
+ }
+ return check; 
+}
+
+function myReduce(arr, cb)
+{
+  let reduceArr = [];
+  for(let step = 0; step < arr.length;)
+}
