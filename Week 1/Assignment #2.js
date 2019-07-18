@@ -198,24 +198,24 @@ function grabValues(object)
   return keyArr;
 }
 
-Object.prototype.grabKeys = function(object)
+Object.grabKeys = function(object)
 {
   let keyArr = [];
-  for(let key in this)
+  for(let key in object)
   {
-    if(this.hasOwnProperty(key)) keyArr.push(key);
+    if(object.hasOwnProperty(key)) keyArr.push(key);
   }
   return keyArr;
 }
 
-Object.prototype.grabValues = function()
+Object.grabValues = function(object)
 {
   let valArr = [];
-  for(let value in this)
+  for(let value in object)
   {
-    if(this.hasOwnProperty(value)) keyArr.push(this[value])
+    if(object.hasOwnProperty(value)) valArr.push(object[value]);
   }
-  return keyArr;
+  return valArr;
 }
 
 
@@ -240,7 +240,7 @@ console.log(myEvery(arr, isEven));
 console.log(mySome(arr, isEven));
 console.log(arr.myIncludes(8));
 console.log(grabKeys(objWhy));
-console.log(objWhy.grabKeys());
+console.log(Object.grabKeys(objWhy));
 console.log(grabValues(objWhy));
-console.log(Object.keys(objWhy));
+console.log(Object.grabValues(objWhy));
 */
