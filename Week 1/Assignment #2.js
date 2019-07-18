@@ -183,15 +183,9 @@ function grabKeys(object)
   let keyArr = [];
   for(let key in object)
   {
-    keyArr.push(key);
+    if(object.hasOwnProperty(key)) keyArr.push(key);
   }
   return keyArr;
-}
-
-
-
-function isEven(int){ 
-  return (int % 2 === 0);
 }
 
 function grabValues(object)
@@ -199,30 +193,17 @@ function grabValues(object)
   let keyArr = [];
   for(let value in object)
   {
-    keyArr.push(object[value]);
+    if(object.hasOwnProperty(value)) keyArr.push(object[value]);
   }
   return keyArr;
 }
-
-
-
-
-/*
-
-
---- For some reason both the prototype grabKeys and grabValues add to the "for(let key in object)" when returning keyArr so these will be put off until I solve the issue.
-
-
-
---- There are tests and basic arrays and objects created in order to test the created functions
-
 
 Object.prototype.grabKeys = function(object)
 {
   let keyArr = [];
   for(let key in this)
   {
-    keyArr.push(key);
+    if(this.hasOwnProperty(key)) keyArr.push(key);
   }
   return keyArr;
 }
@@ -232,9 +213,18 @@ Object.prototype.grabValues = function()
   let valArr = [];
   for(let value in this)
   {
-    keyArr.push(this[value])
+    if(this.hasOwnProperty(value)) keyArr.push(this[value])
   }
   return keyArr;
+}
+
+
+
+/*
+--- There are tests and basic arrays and objects created in order to test the created functions
+
+function isEven(int){ 
+  return (int % 2 === 0);
 }
 
 let objWhy ={
