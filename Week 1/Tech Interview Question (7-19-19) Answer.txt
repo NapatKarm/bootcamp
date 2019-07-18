@@ -1,0 +1,47 @@
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+vector<int> digitIncrement(vector<int> input)
+{
+  bool numcheck = false;
+  vector<int> answer = input;
+  int length = answer.size()-1;
+  while(numcheck == false)
+  {
+    answer[length]++;
+    if(answer[length] > 9)
+    {
+      answer[length] = 0;
+      length--;
+      if(length==-1)
+      {
+        answer.insert(answer.begin(), 1);
+        numcheck = true;
+      }
+    }
+    else numcheck = true;
+  }
+  return answer;
+
+}
+
+/*   --- TESTING THE FUNCTION: SHOULD WORK FOR ALL EXCEPT IF 0s ARE IN FRONT ---
+int main() {
+  vector<int> whatever{9};
+  for(int step = 0; step < whatever.size(); step++)
+  {
+    cout<<whatever[step]<<" ";
+  }
+  cout<<endl;
+
+  whatever = digitIncrement(whatever);
+  
+  for(int step = 0; step < whatever.size(); step++)
+  {
+    cout<<whatever[step]<<" ";
+  }
+  cout<<endl;
+}
+*/
