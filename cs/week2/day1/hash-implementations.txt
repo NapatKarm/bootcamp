@@ -1,0 +1,43 @@
+//HashSet Answer
+
+class MyHashSet {
+public:
+    MyHashSet(): hashSet(1000001, false){
+    }
+    
+    void add(int key) {
+        hashSet[key] = true;
+    }
+    
+    void remove(int key) {
+        hashSet[key] = false;
+    }
+    
+    bool contains(int key) {
+       return hashSet[key];
+    }
+private:
+    vector<bool> hashSet;
+};
+
+//HashMap Answer
+
+class MyHashMap {
+public:
+    MyHashMap(): hashSet(1000001, -1){
+    }
+    
+    void put(int key, int value) {
+        hashSet[key] = value;
+        
+    }
+    int get(int key) {
+        return hashSet[key];
+        
+    }
+    void remove(int key) {
+        hashSet[key] = -1;
+    }
+private:
+    vector<int> hashSet;
+};
