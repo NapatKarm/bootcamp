@@ -1,0 +1,24 @@
+class Solution {
+public:
+    vector<vector<string>> groupAnagrams(vector<string>& strs) {
+        unordered_map<string, vector<string>> answerMap;
+
+        for(int step = 0; step < strs.size(); step++)
+        {
+            answerMap[sortString(strs[step])].push_back(strs[step]);
+        }
+        vector<vector<string>> answer;
+        answer.reserve(answerMap.size());
+        for(auto content : answerMap)
+        {
+            answer.push_back(content.second);
+        }
+        return answer;
+    }
+    
+    string sortString(string input){
+        string sorted = input;  
+        sort(sorted.begin(),sorted.end());
+        return sorted;
+    }
+};
