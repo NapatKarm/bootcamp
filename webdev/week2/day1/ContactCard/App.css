@@ -1,0 +1,25 @@
+.App-header {
+  background-color: #266565;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  font-size: 18px;
+  color: #679595;
+}
+.ContactCard th, td {
+  border: 2px solid #679595;
+  border-collapse: collapse;
+}
+.ContactCard table {
+  margin-top: 20px;
+  margin-left: 20px;
+  width: 25%;
+  border: 2px solid #043636;
+  border-collapse: collapse;
+  background-color: #043636;
+  color: white;
+}
+.ContactCard th, td {
+  padding: 10px;
+  text-align: left;    
+}
