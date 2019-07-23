@@ -1,0 +1,22 @@
+class Solution {
+public:
+    vector<int> intersection(vector<int>& nums1, vector<int>& nums2) {
+        unordered_set<int> num1convert;
+        unordered_set<int> num2convert;
+
+        
+        for(int step = 0; step < nums1.size();step++)
+        {
+            num1convert.insert(nums1[step]);
+        }
+        for(int step = 0; step < nums2.size(); step++)
+        {
+            if(num1convert.find(nums2[step])!=num1convert.end()) num2convert.insert(nums2[step]);
+        }
+
+        vector<int> answer(num2convert.begin(), num2convert.end());
+
+        return answer;
+        
+    }
+};
