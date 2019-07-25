@@ -1,0 +1,19 @@
+//Couldn't solve basecase #9, no response on stdout
+int kth_smallest(vector<int> numbers, int rank) {
+    list<int> answer;
+    {
+        for(int step = 0; step < numbers.size(); step++)
+        {
+            answer.push_back(numbers[step]);
+        }
+        answer.sort();
+        for(int step = 0; step < rank-1; step++)
+        {
+            answer.pop_front();
+        }
+    }
+    return answer.front();
+
+}
+
+int main()
