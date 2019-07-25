@@ -1,0 +1,12 @@
+class Solution {
+public:
+    bool containsNearbyDuplicate(vector<int>& nums, int k) {
+        unordered_map<int, int> fullMap;
+        for(int step = 0; step<nums.size();step++)
+        {
+            if((fullMap.find(nums[step])!=fullMap.end())&&(abs(fullMap[nums[step]]-step)<=k)) return true;
+            fullMap[nums[step]] = step;
+        }
+        return false;
+    }
+};
