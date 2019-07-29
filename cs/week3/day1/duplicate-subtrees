@@ -1,0 +1,30 @@
+/*
+    Couldn't Figure it out alone, went to discussion on leetcode:
+
+    Attempted to traverse the tree and create subtrees but the implemented function did not work and
+    felt like I needed help. This code was not completely created by me but with the help of Leetcode
+    "alexander" on the discussion section of the problem I was able to use his ideas. I would not be 
+    able to come up with this by myself and all the credits go to him
+
+
+*/
+class Solution {
+public:
+    vector<TreeNode*> findDuplicateSubtrees(TreeNode* root) {
+        vector<TreeNode*> Answer;
+        unordered_map<string, vector<TreeNode*>> AnswerMap;
+        treeIntoString(root, AnswerMap);
+        for (auto step = AnswerMap.begin(); step != AnswerMap.end(); step++)
+        {
+            if(step->second.size() > 1) Answer.push_back(step->second[0]);
+        }
+        return Answer;
+    }
+private:
+    string treeIntoString(TreeNode* root, unordered_map<string, vector<TreeNode*>>& AnswerMap) {
+        if(!root) return "";
+        string tree = "(" + treeIntoString(root->right, AnswerMap) + to_string(root->val) + treeIntoString(root->left, AnswerMap) + ")";
+        AnswerMap[tree].push_back(root);
+        return tree;
+    }
+};

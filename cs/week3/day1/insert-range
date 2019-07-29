@@ -1,0 +1,10 @@
+/*
+    Went through multiple different types of codes and this one liner did it all..
+*/
+
+
+void insert_into_array(vector<int>& destination, vector<int>& source, int start) {
+
+    destination.insert(destination.begin()+start, source.begin(), source.end());
+
+}
