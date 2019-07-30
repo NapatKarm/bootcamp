@@ -1,0 +1,100 @@
+/*
+
+    This took so long, my head hurts. 
+
+
+
+*/
+
+SinglyLinkedListNode* linked_list_pivot(SinglyLinkedListNode* lst, int key) {
+    SinglyLinkedListNode* travelList = lst;
+    bool firstBegin = true;
+    SinglyLinkedListNode* beginList;
+    SinglyLinkedListNode* beforeKey;
+    bool firstFoundKey = true;
+    SinglyLinkedListNode* firstKey;
+    SinglyLinkedListNode* lastKey;
+    SinglyLinkedListNode* endList;
+    bool firstAfterKey = true;
+    SinglyLinkedListNode* afterLastKey;
+    while(travelList != NULL)
+    {
+        if(travelList->data == key)
+        {
+            if(firstFoundKey)
+            {
+                firstKey = travelList;
+                if(firstBegin)
+                {
+                    beginList = travelList;
+                }
+                lastKey = travelList;
+                firstFoundKey = false;
+                if(!firstBegin)
+                {
+                    beforeKey->next = travelList;
+                }
+                if(!firstAfterKey)
+                {
+                    travelList = travelList->next;
+                    lastKey->next = afterLastKey;
+                }
+                else
+                {
+                    travelList = travelList->next;
+                }
+            }
+            else
+            {
+                lastKey->next = travelList;
+                lastKey = lastKey->next;
+                travelList = travelList->next;
+                if(!firstAfterKey) lastKey->next = afterLastKey;
+            }
+        }
+        else if(travelList->data < key)
+        {
+            if(firstBegin)
+            {
+                beforeKey = travelList;
+                beginList = travelList;
+                travelList = travelList->next;
+                firstBegin = false;
+                if(!firstFoundKey)
+                {
+                    beforeKey->next = firstKey;
+                }
+            }
+            else
+            {
+                beforeKey->next = travelList;
+                beforeKey = beforeKey->next;
+                travelList = travelList->next;
+                if(!firstFoundKey) beforeKey->next = firstKey;
+            }
+        }
+        else
+        {
+            if(firstAfterKey)
+            {
+                endList = travelList;
+                afterLastKey = travelList;
+                firstAfterKey = false;
+                if(!firstFoundKey)
+                {
+                    lastKey->next = travelList;
+                }
+                travelList = travelList->next;
+            }
+            else
+            {
+                endList->next = travelList;
+                endList = endList->next;
+                travelList = travelList->next;
+                endList->next = NULL;
+            }
+            
+        }
+    }
+    return beginList;
+}
