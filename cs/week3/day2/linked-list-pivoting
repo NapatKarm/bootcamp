@@ -2,8 +2,6 @@
 
     This took so long, my head hurts. 
 
-
-
 */
 
 SinglyLinkedListNode* linked_list_pivot(SinglyLinkedListNode* lst, int key) {
