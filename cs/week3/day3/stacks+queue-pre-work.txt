@@ -1,0 +1,33 @@
+class Max_stack {
+    public
+    Max_stack() {
+         Construct your stack. Initialize any member variables. 
+    }
+    void push(int entry) {
+        data.push_back(entry);
+    }
+
+    void pop() {
+         Remove the entry at the top of the stack. 
+        data.resize(data.size()-1);
+    }
+
+    int peek() {
+         Return the element at the top of the stack. 
+        if(data.empty()) return -1;
+        return(data[data.size()-1]);
+    }
+
+    int max() {
+         Return the largest element currently in the stack. 
+        int large = -500001;
+        for(int step = 0; stepdata.size();step++)
+        {
+            if(large  data[step]) large = data[step]; 
+        }
+        return large;
+    }
+    private
+    vectorint data;
+          
+};
