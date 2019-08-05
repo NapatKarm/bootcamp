@@ -10,6 +10,7 @@ const DECREMENT = "DECREMENT";
 export const increment = () => {
     return {
         type: INCREMENT
+        
     }
 }
 

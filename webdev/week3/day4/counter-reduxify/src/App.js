@@ -1,13 +1,15 @@
-import React from 'react';
+import React, {Component} from 'react';
 import './App.css';
+
+import AppView from "./AppView";
 
 import { connect} from "react-redux";
 import { increment, decrement} from "./store/utilities/counter"
 
 class AppContainer extends Component {
-  retder() {
+  render() {
     return (
-      <AppView counter = {this.props.counter} incrementCounter={this.props.incrementCounter} decrementCounter={this.props.decrementCounter} />
+      <AppView counter={this.props.counter} incrementCounter={this.props.incrementCounter} decrementCounter={this.props.decrementCounter} />
     )
   }
 }
@@ -17,7 +19,7 @@ class AppContainer extends Component {
 // The values of these keys reflect the value of the piece of state in your Redux store;
 const mapState = (state) => {
   return {
-    couter: state.counter
+    counter: state.counter
   }
 }
 

@@ -14,6 +14,7 @@ import { combineReducers, applyMiddleware, createStore } from "redux";
 import { createLogger } from "redux-logger";
 import thunkMiddleware from "redux-thunk";
 import { composeWithDevTools } from "redux-devtools-extension";
+import counter from  "./utilities/counter";
 
 // TODO: import reducer functions here - TODO;
 
@@ -25,7 +26,7 @@ import { composeWithDevTools } from "redux-devtools-extension";
 // middleware: is middleware;
 // store: first argument is your reducer(s) (keep in mind you can just have one reducer without the combineReducers involved****) and your second argument passed in is your middleware that operates in between actions being dispatched and those actions arriving at the reducer function;
 // ****: with combineReducer, you are allowed to have split up reducer functions that manage a certain part of state, and this function combineReducers will go through each key in the combinedReducerObject and invoke in reducer functions aka value until all reducer functions are called; --- however if you do not use combineReducers you can simply pass in a single reducer function so you can pass in an object of reducer functions with combineReducer or you can pass in one sole reducer function without combineReducer;
-const rootReducer = combineReducers(counter);
+const rootReducer = combineReducers({counter});
 const logger = createLogger({ collapse: true});
 const middleware = composeWithDevTools(applyMiddleware(thunkMiddleware, logger));
 const store = createStore(rootReducer, middleware);

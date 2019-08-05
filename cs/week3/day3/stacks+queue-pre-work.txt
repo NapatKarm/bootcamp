@@ -1,4 +1,4 @@
-class Max_stack {
+       class Max_stack {
     public
     Max_stack() {
          Construct your stack. Initialize any member variables. 
