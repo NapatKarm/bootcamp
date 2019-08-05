@@ -1,0 +1,115 @@
+class MyCircularQueue {
+public:
+    /** Initialize your data structure here. Set the size of the queue to be k. */
+    MyCircularQueue(int k) {
+        queueData.resize(k);
+        frontQueue = 0;
+        endQueue = 0;
+        numData =0;
+        
+    }
+    
+    /** Insert an element into the circular queue. Return true if the operation is successful. */
+    bool enQueue(int value) {
+        if(numData == 0)
+        {
+            numData++;
+            queueData[endQueue] = value;
+            return true;
+        }
+        if((endQueue==queueData.size()-1)&&(frontQueue!=0))
+        {
+            queueData[0] = value;
+            endQueue = 0;
+            numData++;
+            return true;
+        }
+        else if(numData == queueData.size())
+        {
+            return false;
+            
+        }
+        if(endQueue != frontQueue-1)
+        {
+            queueData[endQueue+1] = value;
+            endQueue++;
+            numData++;
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    
+    /** Delete an element from the circular queue. Return true if the operation is successful. */
+    bool deQueue() {
+        cout<<"Current Number of elements is: "<<numData<<endl;
+        if(numData==0) return false;
+        if((frontQueue==endQueue)&&(numData!=0)){
+            numData--;
+            return true;
+        }
+        if(frontQueue==queueData.size()-1)
+        {
+            numData--;
+            frontQueue = 0;
+            return true;
+        }
+        else
+        {
+            numData--;
+            frontQueue++;
+            return true;
+        }
+        
+    }
+    
+    /** Get the front item from the queue. */
+    int Front() {
+        
+        if(numData != 0)
+        {
+            cout<<"Current Number of elements is: "<<numData<<endl;
+            return queueData[frontQueue];
+        }
+        return -1;
+    }
+    
+    /** Get the last item from the queue. */
+    int Rear() {
+        if(numData!=0)
+        {
+                return queueData[endQueue];
+        }
+        return -1;
+    }
+    
+    /** Checks whether the circular queue is empty or not. */
+    bool isEmpty() {
+        if(numData == 0) return true;
+        else return false;
+    }
+    
+    /** Checks whether the circular queue is full or not. */
+    bool isFull() {
+        if(numData == queueData.size()) return true;
+        else return false;
+    }
+    private:
+        vector<int> queueData;
+        int frontQueue;
+        int endQueue;
+        int numData;
+};
+
+/**
+ * Your MyCircularQueue object will be instantiated and called as such:
+ * MyCircularQueue* obj = new MyCircularQueue(k);
+ * bool param_1 = obj->enQueue(value);
+ * bool param_2 = obj->deQueue();
+ * int param_3 = obj->Front();
+ * int param_4 = obj->Rear();
+ * bool param_5 = obj->isEmpty();
+ * bool param_6 = obj->isFull();
+ */
