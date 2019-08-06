@@ -1,0 +1,43 @@
+//FIRST IMPLEMENTATION: very slow time, faster than 11%, memory less than 11%
+class RecentCounter {
+public:
+    RecentCounter() {
+    }
+    
+    int ping(int t) {
+        pingStack.push_back(t);
+        int numping = 0;
+        for(int step = pingStack.size()-1; step>=0; step--)
+        {
+            if(pingStack[step]>=t-3000)
+            {
+                numping++;
+            }
+            else if(pingStack[step]<t-3000)
+            {
+                return numping;
+            }
+        }
+        return numping;
+    }
+private:
+    vector<int> pingStack;
+};
+
+//SECOND IMPLEMENATION, way better, faster than 86%, less memory than 96%
+class RecentCounter {
+public:
+    RecentCounter() {
+    }
+    
+    int ping(int t) {
+        pingQueue.push(t);
+        while(pingQueue.front()<t-3000)
+        {
+            pingQueue.pop();
+        }
+        return pingQueue.size();
+    }
+private:
+    queue<int> pingQueue;
+};
