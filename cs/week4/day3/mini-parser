@@ -1,0 +1,53 @@
+// Wrong Answer unsolved: Too difficult, need more time
+// This approach uses 2 nestedintegers to loop through the whole thing multiple times
+// Starting with the inner most bracket set making its way to the outter one by resetting the outter loop to a sublist and adding it on to the next outter loop through the sublist when the bracket increases
+// Idea should work on paper however, more time is needed to implement in which the string needs to also be turned into integers.
+// Deep question, deep thoughts, bad execution
+
+
+class Solution {
+public:
+    NestedInteger deserialize(string s) {
+        int bracketCount = 0;
+        NestedInteger mainList;
+        NestedInteger subList;
+        int backBracket = 0;
+        int frontBracket = 0;
+        bool firstIncrease = true;
+        bool firstNum = true;
+        for(int letter = 0; letter < s.size(); letter++)
+        {
+                if(s[letter]==']') bracketCount++;  
+        }
+        for(int step = bracketCount; step > 0; step--)
+        {
+            firstIncrease = true;
+            firstNum = true;
+            backBracket = bracketCount;
+            frontBracket = 0;
+            for(int letter = 0; letter < s.size(); letter++)
+            {
+                if(s[letter]=='[') frontBracket++;
+                else if(s[letter] == ']') backBracket--;
+                else if((frontBracket == step)&&(backBracket == step)&&(firstNum)&&(s[letter]!=','))
+                {
+                    mainList.setInteger(s[letter]);
+                    firstNum = false;
+                    
+                }
+                else if((frontBracket == step)&&(backBracket == step))
+                {
+                    if(s[letter]!=',') mainList.add(s[letter]);   
+                }
+                if((frontBracket>step)&&(firstIncrease))
+                {
+                    mainList.add(subList);
+                    firstIncrease = false;
+                }
+            }
+            subList = mainList;
+        }
+        mainList = subList;
+        return mainList;
+    }
+};
