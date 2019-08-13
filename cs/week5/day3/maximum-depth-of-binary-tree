@@ -1,0 +1,12 @@
+class Solution {
+public:
+    int maxDepth(TreeNode* root) {
+        return fullDepth(root,1);
+    }
+    int fullDepth(TreeNode* root, int level)
+    {
+        if(root==NULL) return level-1;
+        
+        return max(fullDepth(root->left,level+1),fullDepth(root->right,level+1));
+    }
+};
