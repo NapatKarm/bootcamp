@@ -1,0 +1,109 @@
+
+class Solution {
+public:
+    string decodeString(string s) {
+        string answer;
+        int intcheck;
+        string subanswer;
+        int bracket;
+        int checker;
+        for(int step = 0; step < s.size(); step++){
+            if(isdigit(s[step]))
+            {
+                intcheck = step+1;
+                while(isdigit(s[intcheck]))
+                {
+                    intcheck++;
+                }
+                checker = stoi(s.substr(step,intcheck));
+                bracket = 1;
+                subanswer = "";
+                for(int step2 = intcheck+1; step2 < s.size(); step2++)
+                {   
+                    if(s[step2]=='[')
+                    {
+                        subanswer = subanswer+s[step2];
+                        bracket++;
+                    }
+                    else if(s[step2]==']')
+                    {
+                        bracket--;
+                        if(bracket == 0)
+                        {
+                            answer = answer + looper(subanswer, checker);
+                            step = step2;
+                            break;
+                        }
+                        else
+                        {
+                            subanswer = subanswer+s[step2];
+                        }
+                    }
+                    else
+                    {
+                        subanswer = subanswer+s[step2];
+                    }
+                }
+            }
+            else
+            {
+                answer = answer + s[step];
+            }
+        }
+        return answer;
+    }
+    string looper(string s, int repeat){
+        string returner;
+        int intcheck;
+        string subanswer;
+        int bracket;
+        int checker;
+        for(int loop = 0; loop < repeat;loop++)
+        {
+            for(int step = 0; step < s.size(); step++){
+                if(isdigit(s[step]))
+                {
+                    intcheck = step+1;
+                    while(isdigit(s[intcheck]))
+                    {
+                        intcheck++;
+                    }
+                    checker = stoi(s.substr(step,intcheck));
+                    bracket = 1;
+                    subanswer = "";
+                    for(int step2 = intcheck+1; step2 < s.size(); step2++)
+                    {   
+                        if(s[step2]=='[')
+                        {
+                            subanswer = subanswer+s[step2];
+                            bracket++;
+                        }
+                        else if(s[step2]==']')
+                        {
+                            bracket--;
+                            if(bracket == 0)
+                            {
+                                returner = returner + looper(subanswer, checker);
+                                step = step2;
+                                break;
+                            }
+                            else
+                            {
+                                subanswer = subanswer+s[step2];
+                            }
+                        }
+                        else
+                        {
+                            subanswer = subanswer+s[step2];
+                        }
+                    }
+                }
+                else
+                {
+                    returner = returner + s[step];
+                }
+            }
+        }
+        return returner;
+    }
+};

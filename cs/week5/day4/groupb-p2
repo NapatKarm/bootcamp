@@ -1,0 +1,52 @@
+    ORIGINAL ANSWER WITH O(N^2) TIME // did not pass, time limit exceeded
+    
+    vector<int> nextGreaterElements(vector<int>& nums) {
+        vector<int> answer;
+        int check;
+        int curnum;
+        bool allcheck = true;
+        for(int step = 0; step < nums.size(); step++)
+        {
+            if(step<nums.size()-1) check = step+1;
+            else check = 0;
+            curnum = nums[step];
+            allcheck = true;
+            while(check != step)
+            {
+                if(check == nums.size()) check = 0;
+                if(curnum < nums[check])
+                {
+                    answer.push_back(nums[check]);
+                    allcheck = false;
+                    break;
+                }
+                else
+                {
+                    check++;
+                }
+            }
+            if(allcheck)
+            {
+                answer.push_back(-1);
+            }
+        }
+        return answer;
+    }
+};
+
+
+
+// OPTIMIZED ANSWER with discussion help
+    vector<int> nextGreaterElements(vector<int>& nums) {
+        vector<int> answer(nums.size(), -1);
+        stack<int> stacker;
+        for (int step = 0; step < nums.size() * 2; step++) {
+            int num = nums[step % nums.size()]; 
+            while (!stacker.empty() && nums[stacker.top()] < num) {
+                answer[stacker.top()] = num;
+                stacker.pop();
+            }
+            if (step < nums.size()) stacker.push(step);
+        }   
+        return answer;
+    }
